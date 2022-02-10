@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+				padding: 10%;
+			}
+			input {
+				font-size: 1.3rem;
+			}
+			input[type=text] {
+				border: none;
+    			border-bottom: black 1px solid;
+			}
+			input[type=submit] {
+				background-color: none;
+				background: none;
+				border: none;
+			}
+		</style>
+	</head>
+    <body>
+		<h1>Shakespeare Words</h1>
+				<form method="GET">
+			<input type="text" name="word" placeholder="Search word">
+			<input type="submit" value="🔎">
+		</form>
+		<hr />
+		{{if .}}
+			<h3>Results</h3>
+		{{end}}
+		{{range $val := .}}
+			<p>{{$val.Headword}} : {{$val.Definition}}</p>
+		{{end}}
+    </body>
+</html>
