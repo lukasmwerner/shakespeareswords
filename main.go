@@ -3,12 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/lukasmwerner/pine"
 	"html/template"
 	"io"
 	"net/http"
 	"strings"
-
-	"github.com/labstack/echo/v4"
 )
 
 type ResultBundle struct {
@@ -24,10 +23,6 @@ type Result struct {
 
 type Template struct {
 	templates *template.Template
-}
-
-func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
 }
 
 func GetResults(words string) ([]Result, error) {
@@ -83,24 +78,22 @@ func main() {
 	t := &Template{
 		templates: template.Must(template.ParseGlob("templates/*.html")),
 	}
-	e := echo.New()
-	e.Renderer = t
-	e.GET("/", IndexHandler)
+	p := pine.New()
+	p.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		param := r.URL.Query().Get("word")
+		if param == "" {
+			t.templates.Lookup("index.html").Execute(w, nil)
+			return
+		}
+		results, err := GetResults(param)
+		if err != nil {
+			http.Error(w, err.Error(), 500)
+			return
+		}
 
-	e.Logger.Fatal(e.Start(":1323"))
+		t.templates.Lookup("index.html").Execute(w, results)
 
-}
+	})
 
-func IndexHandler(c echo.Context) error {
-	word := c.QueryParam("word")
-	if word == "" {
-		return c.Render(200, "index.html", nil)
-	}
-
-	results, err := GetResults(word)
-	if err != nil {
-		return err
-	}
-
-	return c.Render(200, "index.html", results)
+	http.ListenAndServe(":8080", p)
 }

@@ -5,6 +5,8 @@ github.com/labstack/echo/v4 v4.6.3 h1:VhPuIZYxsbPmo4m9KAkMU/el2442eB7EBFFhNTTT9a
 github.com/labstack/echo/v4 v4.6.3/go.mod h1:Hk5OiHj0kDqmFq7aHe7eDqI7CUhuCrfpupQtLGGLm7A=
 github.com/labstack/gommon v0.3.1 h1:OomWaJXm7xR6L1HmEtGyQf26TEn7V6X88mktX9kee9o=
 github.com/labstack/gommon v0.3.1/go.mod h1:uW6kP17uPlLJsD3ijUYn3/M5bAxtlZhMI6m3MFxTMTM=
+github.com/lukasmwerner/pine v0.1.0 h1:gUIq8vKKNoEv1VWzyH1F1G1IQzJB3fkdNFPLMHNGngo=
+github.com/lukasmwerner/pine v0.1.0/go.mod h1:VuKnwZoB6aSyuHeJFcPxx6aZTjWz8dnYKuPPmEmIyC4=
 github.com/mattn/go-colorable v0.1.11 h1:nQ+aFkoE2TMGc0b68U2OKSexC+eq46+XwZzWXHRmPYs=
 github.com/mattn/go-colorable v0.1.11/go.mod h1:u5H1YNBxpqRaxsYJYSkiCWKzEfiAb1Gb520KVy5xxl4=
 github.com/mattn/go-isatty v0.0.14 h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=
